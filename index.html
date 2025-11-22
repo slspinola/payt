@@ -79,6 +79,54 @@
             color: var(--primary);
         }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu Overlay */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* Container Principal */
         .container {
             max-width: 1400px;
@@ -550,8 +598,98 @@
             margin-top: 3rem;
         }
 
+        /* Image Responsiveness */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Table Responsiveness */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.5rem 0;
+        }
+
+        /* Touch-friendly elements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn,
+            .accordion-header,
+            .nav-links a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
         /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 5rem 1.5rem 1.5rem;
+            }
+
+            section {
+                padding: 3rem 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo img {
+                height: 40px !important;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                gap: 0;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 0;
+                font-size: 1.1rem;
+            }
+
             h1 {
                 font-size: 2rem;
             }
@@ -560,39 +698,196 @@
                 font-size: 1.6rem;
             }
 
+            h3 {
+                font-size: 1.2rem;
+            }
+
             .hero {
-                padding: 3rem 2rem !important;
+                padding: 3rem 1.5rem !important;
             }
 
             .hero h1 {
                 font-size: 2rem;
             }
 
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 5rem 1rem 1rem;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+                margin-bottom: 2rem;
+            }
+
             .grid-2,
             .grid-3,
             .grid-4 {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .comparison {
                 grid-template-columns: 1fr;
             }
 
+            .stats-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
             .flow-diagram {
                 flex-direction: column;
+                gap: 1rem;
             }
 
             .flow-arrow {
                 transform: rotate(90deg);
             }
 
-            .nav-links {
-                gap: 1rem;
+            .flow-item {
+                min-width: 100%;
+                padding: 1.2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+                width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            table {
                 font-size: 0.9rem;
             }
 
+            th,
+            td {
+                padding: 0.8rem 0.5rem;
+            }
+
+            .invoice-box {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .invoice-row {
+                padding: 0.6rem 0;
+                flex-wrap: wrap;
+            }
+
+            .invoice-row span {
+                font-size: 0.9rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .comparison-value {
+                font-size: 2rem;
+            }
+
+            .accordion-header {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .accordion-content {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo img {
+                height: 35px !important;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
             section {
-                padding: 2rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .card-icon {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .comparison-value {
+                font-size: 1.75rem;
+            }
+
+            .invoice-box {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .invoice-row.section-header {
+                margin: 1rem -1rem 0.5rem -1rem;
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th,
+            td {
+                padding: 0.6rem 0.4rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-4 {
+                gap: 1rem;
             }
         }
 
@@ -634,19 +929,27 @@
 </head>
 
 <body>
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" onclick="closeMenu()"></div>
+
     <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
             <img src="images/b2s.png" alt="b2s logo" style="height: 50px;">
         </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <ul class="nav-links">
-            <li><a href="#problema">Problema</a></li>
-            <li><a href="#solucao">Solução</a></li>
-            <li><a href="#funcionamento">Como Funciona</a></li>
-            <li><a href="#faturacao">Faturação</a></li>
-            <li><a href="#tecnologia">Tecnologia</a></li>
-            <li><a href="#beneficios">Benefícios</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#problema" onclick="closeMenu()">Problema</a></li>
+            <li><a href="#solucao" onclick="closeMenu()">Solução</a></li>
+            <li><a href="#funcionamento" onclick="closeMenu()">Como Funciona</a></li>
+            <li><a href="#faturacao" onclick="closeMenu()">Faturação</a></li>
+            <li><a href="#tecnologia" onclick="closeMenu()">Tecnologia</a></li>
+            <li><a href="#beneficios" onclick="closeMenu()">Benefícios</a></li>
+            <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
         </ul>
     </nav>
 
@@ -746,48 +1049,50 @@
                 <p>O sistema <strong>cobra por indiferenciado</strong> e <strong>concede créditos por
                         seletivos</strong>.</p>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tipo de Resíduo</th>
-                            <th>Valor</th>
-                            <th>Efeito</th>
-                            <th>Exemplo (100L)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Indiferenciado</strong></td>
-                            <td>0,35€/L</td>
-                            <td>Débito (paga)</td>
-                            <td style="color: var(--primary); font-weight: bold;">+35,00€</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Embalagens</strong></td>
-                            <td>-0,08€/L</td>
-                            <td>Crédito (poupa)</td>
-                            <td style="color: var(--accent); font-weight: bold;">-8,00€</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Papel</strong></td>
-                            <td>-0,05€/L</td>
-                            <td>Crédito (poupa)</td>
-                            <td style="color: var(--accent); font-weight: bold;">-5,00€</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Vidro</strong></td>
-                            <td>-0,03€/L</td>
-                            <td>Crédito (poupa)</td>
-                            <td style="color: var(--accent); font-weight: bold;">-3,00€</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Compostagem</strong></td>
-                            <td>-0,05€/L</td>
-                            <td>Desconto Especial</td>
-                            <td style="color: var(--accent); font-weight: bold;">-5,00€</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de Resíduo</th>
+                                <th>Valor</th>
+                                <th>Efeito</th>
+                                <th>Exemplo (100L)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Indiferenciado</strong></td>
+                                <td>0,35€/L</td>
+                                <td>Débito (paga)</td>
+                                <td style="color: var(--primary); font-weight: bold;">+35,00€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Embalagens</strong></td>
+                                <td>-0,08€/L</td>
+                                <td>Crédito (poupa)</td>
+                                <td style="color: var(--accent); font-weight: bold;">-8,00€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Papel</strong></td>
+                                <td>-0,05€/L</td>
+                                <td>Crédito (poupa)</td>
+                                <td style="color: var(--accent); font-weight: bold;">-5,00€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vidro</strong></td>
+                                <td>-0,03€/L</td>
+                                <td>Crédito (poupa)</td>
+                                <td style="color: var(--accent); font-weight: bold;">-3,00€</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Compostagem</strong></td>
+                                <td>-0,05€/L</td>
+                                <td>Desconto Especial</td>
+                                <td style="color: var(--accent); font-weight: bold;">-5,00€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <h3><i class="fa-solid fa-3" style="margin-right: 0.5rem;"></i> Taxa Geral de Resíduos (TGR)</h3>
@@ -1331,6 +1636,48 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const body = document.body;
+
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+
+            // Prevent body scroll when menu is open
+            if (navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        }
+
+        function closeMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const body = document.body;
+
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const isClickInside = navLinks.contains(event.target) || menuToggle.contains(event.target);
+
+            if (!isClickInside && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
         // Accordion functionality
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
